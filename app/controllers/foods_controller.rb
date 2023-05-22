@@ -39,15 +39,6 @@ class FoodsController < ApplicationController
   # GET /shopping_list
   def shopping_list
     @user = current_user
-    @recipes = @user.recipes
-    @food_list = @user.foods
-
-    # Find the missing foods for all recipes
-    @missing_foods = @recipes.map(&:foods).flatten.uniq - @food_list
-
-    # Calculate the total count and price of missing foods
-    @total_count = @missing_foods.count
-    @total_price = @missing_foods.sum(:price)
 
     render :shopping_list
   end
