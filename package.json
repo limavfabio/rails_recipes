@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "stylelint": "13.x",
+    "stylelint-scss": "3.x",
+    "stylelint-config-standard": "21.x",
+    "stylelint-csstree-validator": "1.x"
+  },
+  "scripts": {
+    "lint:css": "stylelint \"**/*.{css,scss}\" --config .stylelintrc.json",
+    "lint:all": "pnpm run lint:css && rubocop -A"
+  }
+}
