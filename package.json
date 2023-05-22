@@ -6,7 +6,8 @@
     "stylelint-csstree-validator": "1.x"
   },
   "scripts": {
-    "lint:css": "stylelint \"**/*.{css,scss}\" --config .stylelintrc.json",
-    "lint:all": "pnpm run lint:css && rubocop -A"
+    "lint:css": "stylelint \"**/*.{css,scss}\" --fix",
+    "lint:fix": "pnpm run lint:css && rubocop -A",
+    "tw:dev": "rails tailwindcss:watch"
   }
 }
