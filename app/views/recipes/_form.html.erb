@@ -11,32 +11,37 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+
+<div class=" rounded flex flex-col gap-4 p-4 w-[500px] h-full shadow-md justyify-center items-center bg-slate-200">
+
+  <div class="w-full">
+    <%= form.label :name, class: "w-[90%] flex flex-col"%>
+    <%= form.text_field :name, class: "w-full"%>
   </div>
 
-  <div>
-    <%= form.label :preparation_time, style: "display: block" %>
-    <%= form.number_field :preparation_time %>
+   <div class="w-full">
+    <%= form.label :preparation_time, class: "w-full flex flex-col" %>
+    <%= form.number_field :preparation_time, class: "w-full"%>
   </div>
 
-  <div>
-    <%= form.label :cooking_time, style: "display: block" %>
-    <%= form.number_field :cooking_time %>
+   <div class="w-full">
+    <%= form.label :cooking_time, class: "w-full flex flex-col" %>
+    <%= form.number_field :cooking_time, class: "w-full"%>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+   <div class="w-full">
+    <%= form.label :description, class: "w-full flex flex-col" %>
+    <%= form.text_area :description, class: "w-full" %>
   </div>
 
-  <div>
-    <%= form.label :public, style: "display: block" %>
+  <div  class="self-start">
+    <%= form.label :public %>
     <%= form.check_box :public %>
   </div>
 
-  <div>
-    <%= form.submit %>
+   <div class="bg-green-500 w-[30%] rounded-md py-2 px-4 text-white font-semibold">
+  <%= form.submit%>
+</div>
   </div>
+
 <% end %>
