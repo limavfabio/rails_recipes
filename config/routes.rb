@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get '/public_recipes', to: 'recipes#public_recipes'
   get '/shopping_list', to: 'foods#shopping_list'
 
-  root "recipes#public_recipes"
+  root "recipes#index"
 end
