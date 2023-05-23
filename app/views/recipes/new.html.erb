@@ -1,9 +1,12 @@
-<h1>New recipe</h1>
+<section class="bg-white w-full h-screen flex flex-col items-center pt-24 gap-8 ">
+
+<h1 class="text-[25px] font-extrabold text-black mb-5">New recipe</h1>
 
 <%= render "form", recipe: @recipe %>
 
 <br>
 
-<div>
+<div class="underline">
   <%= link_to "Back to recipes", recipes_path %>
 </div>
+</section>
