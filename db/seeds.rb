@@ -5,7 +5,7 @@ require 'faker'
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email,
-    password: "password"
+    password: 'password'
   )
 end
 
@@ -32,13 +32,15 @@ end
   )
 end
 
-# Associate foods with recipes
-# Recipe.all.each do |recipe|
-#   5.times do
-#     RecipeFood.create!(
-#       quantity: Faker::Number.between(from: 1, to: 10),
-#       recipe_id: recipe.id,
-#       food_id: Food.all.sample.id
-#     )
-#   end
-# end
+Recipe.all.each do |recipe|
+  5.times do
+    food_id = Food.all.sample.id
+    next unless RecipeFood.where(recipe_id: recipe.id, food_id:).empty?
+
+    RecipeFood.create!(
+      quantity: Faker::Number.between(from: 1, to: 10),
+      recipe_id: recipe.id,
+      food_id:
+    )
+  end
+end
