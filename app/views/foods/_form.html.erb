@@ -1,4 +1,7 @@
 <%= form_with(model: food) do |form| %>
+
+  <%= form.hidden_field :recipe_id, value: @recipe_id %>
+
   <% if food.errors.any? %>
     <div class="bg-red-400 text-white text-center text-sm mb-10 rounded-md">
       <h2><%= pluralize(food.errors.count, "error") %> prohibited this food from being saved:</h2>
@@ -11,6 +14,7 @@
     </div>
   <% end %>
 <div class=" rounded flex flex-col gap-4 p-4 w-[500px] h-full shadow-md justyify-center items-center bg-slate-200">
+Recipe is: <%= @recipe_id %>
   <div>
     <%= form.label :name, class: "w-full flex flex-col" %>
     <%= form.text_field :name, class: "w-full" %>
