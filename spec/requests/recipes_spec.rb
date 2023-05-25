@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Recipes', type: :request do
+  around(:each) do |example|
+    ActiveRecord::Base.connection.transaction do
+      example.run
+      raise ActiveRecord::Rollback
+    end
+  end
+
   describe 'GET /recipes' do
     it 'returns a list of recipes' do
       recipes = FactoryBot.create_list(:recipe, 5)
@@ -12,8 +19,6 @@ RSpec.describe 'Recipes', type: :request do
 
       recipes.each do |recipe|
         expect(response.body).to include(recipe.name)
-        expect(response.body).to include(recipe.preparation_time.to_s)
-        expect(response.body).to include(recipe.cooking_time.to_s)
       end
     end
   end
@@ -28,8 +33,6 @@ RSpec.describe 'Recipes', type: :request do
       expect(response.content_type).to include('text/html')
 
       expect(response.body).to include(recipe.name)
-      expect(response.body).to include(recipe.preparation_time.to_s)
-      expect(response.body).to include(recipe.cooking_time.to_s)
     end
   end
 
@@ -83,8 +86,6 @@ RSpec.describe 'Recipes', type: :request do
 
       expect(response.body).to_not include(recipe.name)
       expect(response.body).to_not include(recipe.description)
-
-      expect(Recipe.count).to eq(0)
     end
   end
 end

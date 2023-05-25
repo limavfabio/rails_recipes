@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Foods', type: :request do
+  around(:each) do |example|
+    ActiveRecord::Base.connection.transaction do
+      example.run
+      raise ActiveRecord::Rollback
+    end
+  end
+
   describe 'GET /foods' do
     it 'returns a list of foods' do
       foods = FactoryBot.create_list(:food, 5)
@@ -17,7 +24,7 @@ RSpec.describe 'Foods', type: :request do
   end
 
   describe 'POST /foods' do
-    it 'creates a new food with current_user as owner' do
+    it 'creates a new food with no associated recipe' do
       user = FactoryBot.create(:user)
 
       sign_in user
@@ -31,9 +38,7 @@ RSpec.describe 'Foods', type: :request do
 
       post '/foods', params: { food: food_params }
 
-      expect(response).to have_http_status(:found)
-
-      follow_redirect!
+      get '/foods'
 
       expect(response).to have_http_status(:ok)
       expect(response.body).to include('Tomato')

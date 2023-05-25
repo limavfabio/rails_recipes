@@ -23,7 +23,7 @@ class FoodsController < ApplicationController
     recipe_id = food_params[:recipe_id]
 
     if @food.save
-      recipe = Recipe.find(recipe_id)
+      recipe = Recipe.find(recipe_id) if recipe_id
       if recipe
         RecipeFood.create!(recipe_id:, food_id: @food.id,
                            quantity: @food.quantity)
