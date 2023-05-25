@@ -1,13 +1,10 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy]
+  before_action :set_recipe, only: %i[show edit update destroy]
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = if current_user
-                 current_user.recipes
-               else
-                 Recipe.where(public: true)
-               end
+    @recipes = Recipe.all
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -51,6 +48,11 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
 
   # Only allow a list of trusted parameters through.
   def recipe_params

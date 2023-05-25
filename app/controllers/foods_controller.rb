@@ -1,5 +1,6 @@
 class FoodsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy]
+  before_action :set_food, only: %i[show edit update destroy]
 
   # GET /foods or /foods.json
   def index
@@ -58,6 +59,11 @@ class FoodsController < ApplicationController
   end
 
   private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_food
+    @food = Food.find(params[:id])
+  end
 
   # Only allow a list of trusted parameters through.
   def food_params
