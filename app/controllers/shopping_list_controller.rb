@@ -1,4 +1,5 @@
 class ShoppingListController < ApplicationController
+  before_action :authenticate_user!
   def index
     food_items = current_user.recipes.map(&:foods).flatten
 
