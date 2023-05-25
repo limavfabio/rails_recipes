@@ -7,13 +7,13 @@
 <%= link_to "New recipe", new_recipe_path %>
 </p>
 
-<div id="recipes", class="flex flex-col gap-8 w-full border">
+<div id="recipes", class="flex flex-col gap-8 w-full">
   <% @recipes.each do |recipe| %>
-  <div class="flex flex-col gap-4 border rounded-md bg-blue-200 p-2 shadow-md">
+  <div class="flex flex-col gap-4 rounded-md bg-blue-200 border-2 border-slate-800 p-2">
   <div>
     <%= render recipe %>
     </div>
-    <p class="bg-[#13b8a6] p-2 rounded-md w-48 text-white flex justify-center items-center self-center">
+    <p class="bg-[#13b8a6] p-1 rounded-md w-48 text-white flex justify-center items-center self-start">
       <%= link_to "Show this recipe", recipe %>
     </p>
     </div>

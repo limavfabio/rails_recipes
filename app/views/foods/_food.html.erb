@@ -1,22 +1,31 @@
-<div id="<%= dom_id food %>">
-  <p>
-    <strong>Name:</strong>
-    <%= food.name %>
-  </p>
-
-  <p>
-    <strong>Measurement unit:</strong>
-    <%= food.measurement_unit %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= food.price %>
-  </p>
-
-  <p>
-    <strong>Quantity:</strong>
-    <%= food.quantity %>
-  </p>
-
-</div>
+<section class="flex flex-col justify-center items-center gap-10">
+  <div class="flex justify-end w-[60%] ">
+    <a href=<%= new_food_path%>>
+      <span class="bg-slate-600 p-2 text-white rounded-md">Add Food</span>
+    </a>
+  </div>
+  <table class="w-[60%] border-2 border-slate-600">
+    <thead class="bg-slate-600 text-white">
+      <th class="">Food</th>
+      <th class="">Measurement Unit</th>
+      <th class="">Unit Price</th>
+      <th class="">Actions</th>
+    </thead>
+    <tbody>
+      <% if @foods%>
+        <% @foods.each do |food| %>
+      <tr class="">
+          <td class="text-center p-2"><%= food.name%></td>
+          <td class="text-center p-2"><%= food.measurement_unit%></td>
+          <td class="text-center p-2"><%= food.price%></td>
+          <td class="text-center p-2">
+            <%= button_to "delete", food_path(food.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "underline" %>
+          </td>
+      </tr>
+        <% end %>
+      <% else %>
+        <td class="text-center p-2 underline">No Food Found</td>
+      <% end %>
+    </tbody>
+  </table>
+</section>
