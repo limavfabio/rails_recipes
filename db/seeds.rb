@@ -13,9 +13,9 @@ end
 30.times do
   Food.create!(
     name: Faker::Food.ingredient,
-    measurement_unit: Faker::Food.metric_measurement,
+    measurement_unit: Faker::Boolean.boolean ? 'grams' : 'units',
     price: Faker::Commerce.price(range: 0..10.0),
-    quantity: Faker::Number.between(from: 1, to: 10),
+    quantity: Faker::Number.between(from: 10, to: 100),
     user_id: User.all.sample.id
   )
 end
