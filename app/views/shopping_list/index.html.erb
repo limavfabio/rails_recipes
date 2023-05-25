@@ -1,0 +1,28 @@
+<h1>Shopping List</h1>
+
+<div>
+<h3>Amount of food items to buy: <%= @missing_food_items.length %> </h3>
+<h3>Total value of food needed: <%= @total_price %></h3>
+</div>
+
+<%# A table with columns food, quantity and price %>
+<table>
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# Iterate over each food item %>
+    <% @missing_food_items.each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.quantity %></td>
+        <td><%= food.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

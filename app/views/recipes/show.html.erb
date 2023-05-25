@@ -12,7 +12,20 @@
   </p>
 
   <%= button_to "Destroy this recipe", @recipe, method: :delete, class: "bg-red-600 p-2 text-white rounded-md shadow-md"%>
+
+  <%= link_to 'Add Ingredient', new_food_path(recipe_id: @recipe.id), class: 'bg-[#13b8a6] p-2 text-white rounded-md shadow-md' %>
+
 </div>
 </div>
 </div>
+</div>
+
+<h2>Recipe Ingredients</h2>
+
+<div>
+  <% @recipe.foods.each do |food| %>
+    <p><%= food.name %></p>
+    <p><%= food.recipe_foods.find_by(recipe_id: @recipe.id).quantity %></p>
+
+  <% end %>
 </div>
