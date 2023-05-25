@@ -1,21 +1,17 @@
-<div id="<%= dom_id recipe %>", class="w-[100%] text-gray-700">
-  <p>
-    <strong>Name:</strong>
-    <%= recipe.name %>
-  </p>
-
-  <p>
-    <strong>Preparation time:</strong>
-    <%= recipe.preparation_time %>
-  </p>
-
-  <p>
-    <strong>Cooking time:</strong>
-    <%= recipe.cooking_time %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= recipe.description %>
-  </p>
-</div>
+<article class="flex justify-between items-center p-4">
+            <div>
+              <h3>
+                <%if recipe.public or recipe.user == current_user %>
+                  <%= link_to  recipe.name, recipe_path(recipe.id)%>
+                <% else %>
+                  <%= link_to  recipe.name, recipes_path(recipe.id)%>
+                <% end %>
+                
+              </h3>
+            </div>
+            <div>
+              <p>
+                <%= recipe.description %>
+              </p>
+            </div>
+</article>

@@ -1,19 +1,31 @@
-<p style="color: green"><%= notice %></p>
-
-<div class="w-full flex justify-center">
-<div class="w-[50%] flex flex-col justify-center items-center py-10 gap-8">
-<h1 class="text-2xl font-bold">FOODS</h1>
-<%= link_to "New food", new_food_path, class: "bg-[#13b8a6] p-2 rounded-md text-white" %>
-<div id="foods" class="w-full flex flex-col gap-8">
-  <% @foods.reverse_each do |food| %>
-  <div class="bg-blue-200 w-full p-4 flex flex-col rounded-md shadow-md">
-    <%= render food %>
-    <div class="flex justify-center items-center">
-      <%= button_to "Destroy this food", food, method: :delete, class: "bg-red-600 p-2 text-white rounded-md shadow-md"%>
-      </div>
-     </div>
-  <% end %>
-</div>
-
-</div>
-</div>
+<section class="flex flex-col justify-center items-center gap-10">
+  <div class="flex justify-end w-[60%] ">
+    <a href=<%= new_food_path%>>
+      <span class="bg-slate-600 p-2 text-white rounded-md">Add Food</span>
+    </a>
+  </div>
+  <table class="w-[60%] border-2 border-slate-600">
+    <thead class="bg-slate-600 text-white">
+      <th class="">Food</th>
+      <th class="">Measurement Unit</th>
+      <th class="">Unit Price</th>
+      <th class="">Actions</th>
+    </thead>
+    <tbody>
+      <% if @foods%>
+        <% @foods.each do |food| %>
+      <tr class="">
+          <td class="text-center p-2"><%= food.name%></td>
+          <td class="text-center p-2"><%= food.measurement_unit%></td>
+          <td class="text-center p-2"><%= food.price%></td>
+          <td class="text-center p-2">
+            <%= button_to "delete", food_path(food.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "underline" %>
+          </td>
+      </tr>
+        <% end %>
+      <% else %>
+        <td class="text-center p-2 underline">No Food Found</td>
+      <% end %>
+    </tbody>
+  </table>
+</section>
