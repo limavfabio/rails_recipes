@@ -1,13 +1,15 @@
-<h1>Shopping List</h1>
+<section class="w-full flex justify-center mt-8">
+<div class="w-[60%] flex flex-col items-center gap-10">
+<h1 class="text-2xl font-bold">Shopping List</h1>
 
-<div>
-<h3>Amount of food items to buy: <%= @missing_food_items.length %> </h3>
-<h3>Total value of food needed: <%= @total_price %></h3>
+<div class="w-full flex justify-around items-center gap-4">
+<h3 class="font-semibold">Amount of food items to buy: <%= @missing_food_items.length %> </h3>
+<h3 class="font-semibold">Total value of food needed: $<%= @total_price %></h3>
 </div>
 
 <%# A table with columns food, quantity and price %>
-<table>
-  <thead>
+<table class="w-full border-2 border-slate-400">
+ <thead class="bg-slate-400">
     <tr>
       <th>Food</th>
       <th>Quantity</th>
@@ -15,14 +17,16 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="">
     <%# Iterate over each food item %>
     <% @missing_food_items.each do |food| %>
       <tr>
-        <td><%= food.name %></td>
-        <td><%= food.quantity %></td>
-        <td><%= food.price %></td>
+        <td class="text-center"><%= food.name %></td>
+        <td class="text-center"><%= food.quantity %>grams</td>
+        <td class="text-center">$<%= food.price %></td>
       </tr>
-    <% end %>
+      <%end%>
   </tbody>
 </table>
+</div>
+</section>
